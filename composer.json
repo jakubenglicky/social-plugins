@@ -1,0 +1,15 @@
+{
+  "name": "jakubenglicky/FacebookSocialPlugins",
+  "type": "library",
+  "description": "Wrapper around faceboook social plugins.",
+  "keywords": ["facebook","comments","share"],
+  "authors": [
+    {
+      "name": "Jakub Englický",
+      "email": "jakubenglicky@gmail.com"
+    }
+  ],
+  "autoload": {
+    "classmap": ["src/"]
+  }
+}
