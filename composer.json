@@ -11,5 +11,8 @@
   ],
   "autoload": {
     "classmap": ["src/"]
+  },
+  "require": {
+    "latte/latte": "^2.4"
   }
 }
