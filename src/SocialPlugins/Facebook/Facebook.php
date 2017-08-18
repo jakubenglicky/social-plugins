@@ -52,7 +52,7 @@ class Facebook
     {
         $this->latte = new \Latte\Engine();
 
-        if (is_int($appId) || $appId == 0 || $appId == NULL) {
+        if ($appId == 0 || $appId == NULL) {
             throw new InputException('Facebook AppID must be defined in correct format.',500);
         }
 
