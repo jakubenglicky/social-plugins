@@ -7,7 +7,7 @@ require_once "bootstrap.php";
 /**
  * @testCase
  */
-class FacebookTest extends TestCase
+class FacebookExceptionsTest extends TestCase
 {
     private $fb;
 
@@ -39,8 +39,6 @@ class FacebookTest extends TestCase
             $fb = new SocialPlugins\Facebook('NULL');
         },\SocialPlugins\Facebook\Exception\InputException::class);
 
-        $fb = new \SocialPlugins\Facebook(606483372714289);
-        Assert::true($fb instanceof \SocialPlugins\Facebook);
     }
 
     public function testComments()
@@ -181,4 +179,4 @@ class FacebookTest extends TestCase
 }
 
 
-(new FacebookTest())->run();
+(new FacebookExceptionsTest())->run();
