@@ -27,6 +27,7 @@ class Facebook
     const LAYOUT_BUTTON_COUNT = 'button_count';
     const LAYOUT_BOX_COUNT = 'box_count';
     const LAYOUT_BUTTON = 'button';
+    const LAYOUT_STANDARD = 'standard';
 
     /* Sizes */
     const SIZE_SMALL = 'small';
@@ -110,6 +111,27 @@ class Facebook
         );
 
         $this->latte->render(__DIR__ . '/templates/fbShare.latte', $parameters);
+    }
+
+    /**
+     * @param string $link
+     * @param integer $width|200
+     * @param string $size|small
+     * @param boolean $layout|button_count
+     * @param boolean $faces
+     * return string of html
+     */
+    public function renderFollowButton($link, $width = 200, $size = self::SIZE_SMALL,$layout = self::LAYOUT_BUTTON_COUNT, $faces = false)
+    {
+        $parameters = array(
+            "link" => $link,
+            "layout" => $layout,
+            "size" => $size,
+            "faces" => $faces,
+            "width" => $width,
+        );
+
+        $this->latte->render(__DIR__ . '/templates/fbFollow.latte', $parameters);
     }
 
     /**
