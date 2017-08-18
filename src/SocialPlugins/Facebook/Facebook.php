@@ -1,8 +1,8 @@
 <?php
 
-namespace FacebookSocialPlugins;
+namespace SocialPlugins;
 
-class Control
+class Facebook
 {
     /**
      * @var \Latte\Engine
