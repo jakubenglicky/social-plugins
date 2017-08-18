@@ -2,6 +2,8 @@
 
 namespace SocialPlugins;
 
+use SocialPlugins\Facebook\InputException;
+
 class Facebook
 {
     /**
@@ -33,6 +35,10 @@ class Facebook
     const SIZE_SMALL = 'small';
     const SIZE_LARGE = 'large';
 
+    /* Page Tabs */
+    const PAGE_TIMELINE = 'timeline';
+    const PAGE_EVENTS = 'events';
+    const PAGE_MESSAGES = 'messages';
 
     public function __construct($appId)
     {
@@ -132,6 +138,43 @@ class Facebook
         );
 
         $this->latte->render(__DIR__ . '/templates/fbFollow.latte', $parameters);
+    }
+
+    /**
+     * @param string $fbPageLink
+     * @param string $tabs
+     * @param integer $width|350
+     * @param integer $height|500
+     * @param boolean $smallHeader|false
+     * @param boolean $hideCoverPhoto|false
+     * @param boolean $showFaces|false
+     * return string of html
+     */
+    public function renderPagePlugin($fbPageLink, $tabs = self::PAGE_TIMELINE, $width = 350, $height = 500, $smallHeader = false, $hideCoverPhoto = false, $showFaces = false)
+    {
+        if ($fbPageLink == '' || $fbPageLink == NULL) {
+            throw new \SocialPlugins\Facebook\Exception\InputException('Facebook page URL must be defined.',500);
+        }
+
+        if ($width < 180 || $width > 500) {
+            throw new \SocialPlugins\Facebook\Exception\InputException('Width must be in this range -> (180-500)px.',500);
+        }
+
+        if ($height < 70) {
+            throw new \SocialPlugins\Facebook\Exception\InputException('Height must be bigger then 70px.',500);
+        }
+
+        $parameters = array(
+            "link" => $fbPageLink,
+            "tabs" => $tabs,
+            "width" => $width,
+            "height" => $height,
+            "smallHeader" => $smallHeader,
+            "hideCover" => $hideCoverPhoto,
+            "faces" => $showFaces,
+        );
+
+        $this->latte->render(__DIR__ . '/templates/fbPage.latte', $parameters);
     }
 
     /**
