@@ -22,6 +22,17 @@ class Facebook
     /**
      * @param string $appId
      */
+
+    /* Layouts */
+    const LAYOUT_BUTTON_COUNT = 'button_count';
+    const LAYOUT_BOX_COUNT = 'box_count';
+    const LAYOUT_BUTTON = 'button';
+
+    /* Sizes */
+    const SIZE_SMALL = 'small';
+    const SIZE_LARGE = 'large';
+
+
     public function __construct($appId)
     {
         $this->latte = new \Latte\Engine();
@@ -69,7 +80,7 @@ class Facebook
      * @param string $faces|false
      * return string of html
      */
-    public function renderLikeButton($link, $shareButton = false, $layout = 'button_count', $size = 'small', $faces = false)
+    public function renderLikeButton($link, $shareButton = false, $layout = self::LAYOUT_BUTTON_COUNT, $size = self::SIZE_SMALL, $faces = false)
     {
         $parameters = array(
             "link" => $link,
@@ -89,7 +100,7 @@ class Facebook
      * @param boolean $mobileFrame|false
      * return string of html
      */
-    public function renderShareButton($link,$layout = 'button_count', $size = 'small',$mobileFrame = false)
+    public function renderShareButton($link,$layout = self::LAYOUT_BUTTON_COUNT, $size = self::SIZE_SMALL,$mobileFrame = false)
     {
         $parameters = array(
             "link" => $link,
