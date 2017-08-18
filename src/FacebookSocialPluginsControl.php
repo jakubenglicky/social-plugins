@@ -8,15 +8,21 @@ class Control
 {
     private $latte;
 
-    public function __construct()
+    private $appId;
+
+    private $locale = 'cs_CZ';
+
+    public function __construct($appId)
     {
         $this->latte = new Engine();
+        $this->appId = $appId;
     }
 
-    public function renderRoot($appId)
+    public function renderInit()
     {
         $parameters = array(
-            "appId" => $appId,
+            "appId" => $this->appId,
+            "locale" => $this->locale,
         );
 
        $this->latte->render(__DIR__ . '/templates/fbRoot.latte', $parameters);
@@ -32,5 +38,10 @@ class Control
 
         $this->latte->render(__DIR__ . '/templates/fbComments.latte', $parameters);
 
+    }
+
+    public function setLocale($locale)
+    {
+        $this->locale = $locale;
     }
 }
