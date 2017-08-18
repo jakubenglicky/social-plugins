@@ -1,8 +1,8 @@
 {
-  "name": "jakubenglicky/FacebookSocialPlugins",
+  "name": "jakubenglicky/SocialPlugins",
   "type": "library",
-  "description": "Wrapper around faceboook social plugins.",
-  "keywords": ["facebook","comments","share"],
+  "description": "Wrapper around social plugins.",
+  "keywords": [],
   "authors": [
     {
       "name": "Jakub Englický",
