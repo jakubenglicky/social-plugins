@@ -2,22 +2,37 @@
 
 namespace FacebookSocialPlugins;
 
-use Latte\Engine;
-
 class Control
 {
+    /**
+     * @var \Latte\Engine
+     */
     private $latte;
 
+    /**
+     * @var integer
+     */
     private $appId;
 
-    private $locale = 'cs_CZ';
+    /**
+     * @var string | 'cs_CZ'
+     */
+    private $locale;
 
+    /**
+     * @param string $appId
+     */
     public function __construct($appId)
     {
-        $this->latte = new Engine();
+        $this->latte = new \Latte\Engine();
         $this->appId = $appId;
+
+        $this->setLocale('cs_CZ');
     }
 
+    /**
+     * return string of html
+     */
     public function renderInit()
     {
         $parameters = array(
@@ -25,8 +40,15 @@ class Control
             "locale" => $this->locale,
         );
 
-       $this->latte->render(__DIR__ . '/templates/fbRoot.latte', $parameters);
+        $this->latte->render(__DIR__ . '/templates/fbRoot.latte', $parameters);
     }
+
+    /**
+     * @param string $link
+     * @param integer $limit|5
+     * @param integer $width|550
+     * return string of html
+     */
 
     public function renderComments($link, $limit = 5, $width = 550)
     {
@@ -40,6 +62,9 @@ class Control
 
     }
 
+    /**
+     * @param string $locale
+     */
     public function setLocale($locale)
     {
         $this->locale = $locale;
