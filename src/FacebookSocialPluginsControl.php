@@ -59,7 +59,19 @@ class Control
         );
 
         $this->latte->render(__DIR__ . '/templates/fbComments.latte', $parameters);
+    }
 
+    public function renderLike($link, $shareButton = false, $layout = 'button_count', $size = 'small', $faces = false)
+    {
+        $parameters = array(
+            "link" => $link,
+            "layout" => $layout,
+            "size" => $size,
+            "share" => $shareButton,
+            "faces" => $faces,
+        );
+
+        $this->latte->render(__DIR__ . '/templates/fbLike.latte', $parameters);
     }
 
     /**
