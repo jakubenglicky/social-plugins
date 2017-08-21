@@ -4,6 +4,9 @@ namespace SocialPlugins;
 
 use SocialPlugins\Facebook\Exception\InputException;
 
+/*
+ * @see Facebook
+ * */
 class Facebook
 {
     /**
@@ -71,7 +74,7 @@ class Facebook
             "locale" => $this->locale,
         );
 
-        $this->latte->render(__DIR__ . '/templates/fbRoot.latte', $parameters);
+        return $this->latte->renderToString(__DIR__ . '/templates/fbRoot.latte', $parameters);
     }
 
     /**
@@ -97,7 +100,7 @@ class Facebook
             "width" => $width,
         );
 
-        $this->latte->render(__DIR__ . '/templates/fbComments.latte', $parameters);
+        return $this->latte->renderToString(__DIR__ . '/templates/fbComments.latte', $parameters);
     }
 
     /**
@@ -134,7 +137,7 @@ class Facebook
             "faces" => $showFaces,
         );
 
-        $this->latte->render(__DIR__ . '/templates/fbLike.latte', $parameters);
+        return $this->latte->renderToString(__DIR__ . '/templates/fbLike.latte', $parameters);
     }
 
     /**
@@ -169,7 +172,7 @@ class Facebook
             "mobileFrame" => $mobileFrame,
         );
 
-        $this->latte->render(__DIR__ . '/templates/fbShare.latte', $parameters);
+        return $this->latte->renderToString(__DIR__ . '/templates/fbShare.latte', $parameters);
     }
 
     /**
@@ -210,7 +213,7 @@ class Facebook
             "width" => $width,
         );
 
-        $this->latte->render(__DIR__ . '/templates/fbFollow.latte', $parameters);
+        return $this->latte->renderToString(__DIR__ . '/templates/fbFollow.latte', $parameters);
     }
 
     /**
@@ -255,7 +258,7 @@ class Facebook
             "faces" => $showFaces,
         );
 
-        $this->latte->render(__DIR__ . '/templates/fbPage.latte', $parameters);
+        return $this->latte->renderToString(__DIR__ . '/templates/fbPage.latte', $parameters);
     }
 
     /**
