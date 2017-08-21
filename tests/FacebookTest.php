@@ -21,16 +21,45 @@ class FacebookTest extends TestCase
         Assert::true($this->fb instanceof \SocialPlugins\Facebook);
     }
 
+    public function testRenderInit()
+    {
+        Assert::truthy(strpos($this->fb->renderInit(),'fb-root'));
+    }
+
     public function testRenderComments()
     {
         Assert::truthy(strpos($this->fb->renderComments('http://www.facebook.com/'),'fb-comments'));
     }
 
-    public function testRenderInit()
+    public function testRenderLikeButton()
     {
-        Assert::truthy(strpos($this->fb->renderComments('http://www.facebook.com/'),'fb-comments'));
+        Assert::truthy(strpos($this->fb->renderLikeButton('http://www.facebook.com/'),'fb-like'));
+
+        Assert::truthy(strpos($this->fb->renderLikeButton('http://www.facebook.com/', TRUE),'data-share="1"'));
+
+        Assert::truthy(strpos($this->fb->renderLikeButton('http://www.facebook.com/', FALSE,$this->fb::LAYOUT_BOX_COUNT),'data-layout="box_count"'));
     }
 
+    public function testRenderShareButton()
+    {
+
+        Assert::truthy(strpos($this->fb->renderShareButton('http://www.facebook.com/'),'fb-share-button'));
+
+    }
+
+    public function testRenderFollowButton()
+    {
+
+        Assert::truthy(strpos($this->fb->renderFollowButton('http://www.facebook.com/zuck'),'fb-follow'));
+
+    }
+
+    public function testRenderPagePlugin()
+    {
+
+        Assert::truthy(strpos($this->fb->renderPagePlugin('http://www.facebook.com/zuck'),'fb-page'));
+
+    }
 
 }
 
