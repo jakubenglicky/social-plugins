@@ -51,15 +51,9 @@ class Facebook
 
     const TABS_OPTIONS = [self::PAGE_TIMELINE, self::PAGE_EVENTS, self::PAGE_MESSAGES];
 
-    public function __construct($appId)
+    public function __construct()
     {
         $this->latte = new \Latte\Engine();
-
-        if ($appId == 0 || $appId == NULL) {
-            throw new InputException('Facebook AppID must be defined in correct format.',500);
-        }
-
-        $this->appId = $appId;
 
         $this->setLocale('cs_CZ');
     }
@@ -70,7 +64,6 @@ class Facebook
     public function renderInit()
     {
         $parameters = array(
-            "appId" => $this->appId,
             "locale" => $this->locale,
         );
 

@@ -13,7 +13,7 @@ class FacebookExceptionsTest extends TestCase
 
     public function __construct()
     {
-        $this->fb = new \SocialPlugins\Facebook(606483372714289);
+        $this->fb = new \SocialPlugins\Facebook();
     }
 
     public function testInstance()
@@ -21,32 +21,11 @@ class FacebookExceptionsTest extends TestCase
         Assert::true($this->fb instanceof \SocialPlugins\Facebook);
     }
 
-    public function testMakingInstance()
-    {
-        Assert::exception(function ()   {
-            $fb = new SocialPlugins\Facebook('');
-            },\SocialPlugins\Facebook\Exception\InputException::class);
-
-        Assert::exception(function ()   {
-            $fb = new SocialPlugins\Facebook(0);
-        },\SocialPlugins\Facebook\Exception\InputException::class);
-
-        Assert::exception(function ()   {
-            $fb = new SocialPlugins\Facebook(NULL);
-        },\SocialPlugins\Facebook\Exception\InputException::class);
-
-        Assert::exception(function ()   {
-            $fb = new SocialPlugins\Facebook('NULL');
-        },\SocialPlugins\Facebook\Exception\InputException::class);
-
-    }
-
     public function testComments()
     {
         Assert::exception(function ()   {
             $this->fb->renderComments('');
         },\SocialPlugins\Facebook\Exception\InputException::class,'Link must be defined.');
-
 
         Assert::exception(function ()   {
             $this->fb->renderComments('http://github.com/','a');

@@ -13,7 +13,7 @@ class FacebookTest extends TestCase
 
     public function __construct()
     {
-        $this->fb = new \SocialPlugins\Facebook(1614900341916739);
+        $this->fb = new \SocialPlugins\Facebook();
     }
 
     public function testInstance()
