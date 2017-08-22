@@ -33,11 +33,13 @@ class FacebookTest extends TestCase
 
     public function testRenderLikeButton()
     {
+        $fb = $this->fb;
+
         Assert::contains('fb-like',$this->fb->renderLikeButton('http://www.facebook.com/'));
 
         Assert::contains('data-share="1"',$this->fb->renderLikeButton('http://www.facebook.com/', TRUE));
 
-        Assert::contains('data-layout="box_count"',$this->fb->renderLikeButton('http://www.facebook.com/', FALSE,$this->fb::LAYOUT_BOX_COUNT));
+        Assert::contains('data-layout="box_count"',$this->fb->renderLikeButton('http://www.facebook.com/', FALSE,$fb::LAYOUT_BOX_COUNT));
     }
 
     public function testRenderShareButton()

@@ -46,6 +46,7 @@ class FacebookExceptionsTest extends TestCase
 
     public function testLike()
     {
+
         Assert::exception(function ()   {
             $this->fb->renderLikeButton('');
         },\jakubenglicky\SocialPlugins\Facebook\Exception\InputException::class,'Link must be defined.');
@@ -60,7 +61,8 @@ class FacebookExceptionsTest extends TestCase
         },\jakubenglicky\SocialPlugins\Facebook\Exception\InputException::class,'Layout must be select from options.');
 
         Assert::exception(function ()   {
-            $this->fb->renderLikeButton('http://github.com/',TRUE,$this->fb::LAYOUT_BUTTON_COUNT,'big');
+            $fb = $this->fb;
+            $this->fb->renderLikeButton('http://github.com/',TRUE,$fb::LAYOUT_BUTTON_COUNT,'big');
         },\jakubenglicky\SocialPlugins\Facebook\Exception\InputException::class,'Size must be select from options.');
     }
 
@@ -77,15 +79,18 @@ class FacebookExceptionsTest extends TestCase
         },\jakubenglicky\SocialPlugins\Facebook\Exception\InputException::class,'Layout must be select from options.');
 
         Assert::exception(function ()   {
-            $this->fb->renderShareButton('http://github.com/',$this->fb::LAYOUT_STANDARD);
+            $fb = $this->fb;
+            $this->fb->renderShareButton('http://github.com/',$fb::LAYOUT_STANDARD);
         },\jakubenglicky\SocialPlugins\Facebook\Exception\InputException::class,'Layout must be select from options.');
 
         Assert::exception(function ()   {
-            $this->fb->renderShareButton('http://github.com/',$this->fb::LAYOUT_BUTTON_COUNT,'big');
+            $fb = $this->fb;
+            $this->fb->renderShareButton('http://github.com/',$fb::LAYOUT_BUTTON_COUNT,'big');
         },\jakubenglicky\SocialPlugins\Facebook\Exception\InputException::class,'Size must be select from options.');
 
         Assert::exception(function ()   {
-            $this->fb->renderShareButton('http://github.com/',$this->fb::LAYOUT_BUTTON_COUNT,$this->fb::SIZE_SMALL,'aaa');
+            $fb = $this->fb;
+            $this->fb->renderShareButton('http://github.com/',$fb::LAYOUT_BUTTON_COUNT,$fb::SIZE_SMALL,'aaa');
         },\jakubenglicky\SocialPlugins\Facebook\Exception\InputException::class,'This value (mobileFrame) must be boolean.');
     }
 
@@ -108,11 +113,13 @@ class FacebookExceptionsTest extends TestCase
         },\jakubenglicky\SocialPlugins\Facebook\Exception\InputException::class,'Size must be select from options.');
 
         Assert::exception(function ()   {
-        $this->fb->renderFollowButton('https://www.facebook.cz/zuck',200,$this->fb::SIZE_SMALL,'test');
+            $fb = $this->fb;
+        $this->fb->renderFollowButton('https://www.facebook.cz/zuck',200,$fb::SIZE_SMALL,'test');
         },\jakubenglicky\SocialPlugins\Facebook\Exception\InputException::class,'Layout must be select from options.');
 
         Assert::exception(function ()   {
-            $this->fb->renderFollowButton('https://www.facebook.cz/zuck',200,$this->fb::SIZE_SMALL,$this->fb::LAYOUT_BUTTON_COUNT,'string');
+            $fb = $this->fb;
+            $this->fb->renderFollowButton('https://www.facebook.cz/zuck',200,$fb::SIZE_SMALL,$fb::LAYOUT_BUTTON_COUNT,'string');
         },\jakubenglicky\SocialPlugins\Facebook\Exception\InputException::class,'This value (showFaces) must be boolean.');
     }
 
@@ -131,19 +138,23 @@ class FacebookExceptionsTest extends TestCase
         },\jakubenglicky\SocialPlugins\Facebook\Exception\InputException::class,'Tab must be select from options.');
 
         Assert::exception(function ()   {
-            $this->fb->renderPagePlugin('https://www.facebook.cz/zuck',$this->fb::PAGE_TIMELINE,50);
+            $fb = $this->fb;
+            $this->fb->renderPagePlugin('https://www.facebook.cz/zuck',$fb::PAGE_TIMELINE,50);
         },\jakubenglicky\SocialPlugins\Facebook\Exception\InputException::class,'Width must be in this range -> (180-500)px.');
 
         Assert::exception(function ()   {
-            $this->fb->renderPagePlugin('https://www.facebook.cz/zuck',$this->fb::PAGE_TIMELINE,600);
+            $fb = $this->fb;
+            $this->fb->renderPagePlugin('https://www.facebook.cz/zuck',$fb::PAGE_TIMELINE,600);
         },\jakubenglicky\SocialPlugins\Facebook\Exception\InputException::class,'Width must be in this range -> (180-500)px.');
 
         Assert::exception(function ()   {
-            $this->fb->renderPagePlugin('https://www.facebook.cz/zuck',$this->fb::PAGE_TIMELINE,450,60);
+            $fb = $this->fb;
+            $this->fb->renderPagePlugin('https://www.facebook.cz/zuck',$fb::PAGE_TIMELINE,450,60);
         },\jakubenglicky\SocialPlugins\Facebook\Exception\InputException::class,'Height must be bigger then 70px.');
 
         Assert::exception(function ()   {
-            $this->fb->renderPagePlugin('https://www.facebook.cz/zuck',$this->fb::PAGE_TIMELINE,450,80,'foo','bar','foo');
+            $fb = $this->fb;
+            $this->fb->renderPagePlugin('https://www.facebook.cz/zuck',$fb::PAGE_TIMELINE,450,80,'foo','bar','foo');
         },\jakubenglicky\SocialPlugins\Facebook\Exception\InputException::class,'These values (smallHeader,hideCoverPhoto,showFaces) must be boolean.');
     }
 }
