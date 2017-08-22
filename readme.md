@@ -2,6 +2,7 @@ SocialPlugins
 ==============
 [![Latest version](https://img.shields.io/packagist/v/jakubenglicky/social-plugins.svg)](https://packagist.org/packages/jakubenglicky/social-plugins)
 [![Downloads this Month](https://img.shields.io/packagist/dm/jakubenglicky/social-plugins.svg)](https://packagist.org/packages/jakubenglicky/social-plugins)
+[![Build](https://api.travis-ci.org/jakubenglicky/social-plugins.svg?branch=master)](https://travis-ci.org/jakubenglicky/social-plugins)
 
 This is the simple wrapper around implementing social plugins to your websites.
 
