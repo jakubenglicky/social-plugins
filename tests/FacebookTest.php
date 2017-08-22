@@ -13,7 +13,7 @@ class FacebookTest extends TestCase
 
     public function __construct()
     {
-        $this->fb = new \SocialPlugins\Facebook(606483372714289);
+        $this->fb = new \SocialPlugins\Facebook(1614900341916739);
     }
 
     public function testInstance()
@@ -23,41 +23,41 @@ class FacebookTest extends TestCase
 
     public function testRenderInit()
     {
-        Assert::truthy(strpos($this->fb->renderInit(),'fb-root'));
+        Assert::contains('fb-root',$this->fb->renderInit());
     }
 
     public function testRenderComments()
     {
-        Assert::truthy(strpos($this->fb->renderComments('http://www.facebook.com/'),'fb-comments'));
+        Assert::contains('fb-comments',$this->fb->renderComments('http://www.facebook.com/'));
     }
 
     public function testRenderLikeButton()
     {
-        Assert::truthy(strpos($this->fb->renderLikeButton('http://www.facebook.com/'),'fb-like'));
+        Assert::contains('fb-like',$this->fb->renderLikeButton('http://www.facebook.com/'));
 
-        Assert::truthy(strpos($this->fb->renderLikeButton('http://www.facebook.com/', TRUE),'data-share="1"'));
+        Assert::contains('data-share="1"',$this->fb->renderLikeButton('http://www.facebook.com/', TRUE));
 
-        Assert::truthy(strpos($this->fb->renderLikeButton('http://www.facebook.com/', FALSE,$this->fb::LAYOUT_BOX_COUNT),'data-layout="box_count"'));
+        Assert::contains('data-layout="box_count"',$this->fb->renderLikeButton('http://www.facebook.com/', FALSE,$this->fb::LAYOUT_BOX_COUNT));
     }
 
     public function testRenderShareButton()
     {
 
-        Assert::truthy(strpos($this->fb->renderShareButton('http://www.facebook.com/'),'fb-share-button'));
+        Assert::contains('fb-share-button',$this->fb->renderShareButton('http://www.facebook.com/'));
 
     }
 
     public function testRenderFollowButton()
     {
 
-        Assert::truthy(strpos($this->fb->renderFollowButton('http://www.facebook.com/zuck'),'fb-follow'));
+        Assert::contains('fb-follow',$this->fb->renderFollowButton('http://www.facebook.com/zuck'));
 
     }
 
     public function testRenderPagePlugin()
     {
 
-        Assert::truthy(strpos($this->fb->renderPagePlugin('http://www.facebook.com/zuck'),'fb-page'));
+        Assert::contains('fb-page', $this->fb->renderPagePlugin('http://www.facebook.com/zuck'));
 
     }
 
