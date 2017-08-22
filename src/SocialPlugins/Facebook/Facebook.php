@@ -1,8 +1,8 @@
 <?php
 
-namespace SocialPlugins;
+namespace jakubenglicky\SocialPlugins;
 
-use SocialPlugins\Facebook\Exception\InputException;
+use jakubenglicky\SocialPlugins\Facebook\Exception\InputException;
 
 /*
  * @see Facebook

@@ -13,12 +13,12 @@ class FacebookTest extends TestCase
 
     public function __construct()
     {
-        $this->fb = new \SocialPlugins\Facebook();
+        $this->fb = new \jakubenglicky\SocialPlugins\Facebook();
     }
 
     public function testInstance()
     {
-        Assert::true($this->fb instanceof \SocialPlugins\Facebook);
+        Assert::true($this->fb instanceof \jakubenglicky\SocialPlugins\Facebook);
     }
 
     public function testRenderInit()
