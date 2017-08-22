@@ -7,7 +7,7 @@ More info (Facebook) -> https://developers.facebook.com/
 Instalation
 -----------
 
-	composer require jakubenglicky/SocialPlugins
+	composer require jakubenglicky/social-plugins
 
 Usage
 -----
