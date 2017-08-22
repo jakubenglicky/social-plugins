@@ -84,14 +84,18 @@ class Facebook
      * return string of html
      */
 
-    public function renderComments($link, $limit = 5, $width = 550)
+    public function renderComments($link = NULL, $limit = 5, $width = 550)
     {
-        if ($link === '' || $link == NULL  || $link === 'NULL') {
+        if ($link === '' || $link === 'NULL') {
             throw new InputException('Link must be defined.', 500);
         }
 
         if (!is_integer($limit) || !is_integer($width)) {
             throw new InputException('These values (limit, width) must be integer.', 500);
+        }
+
+        if ($link == NULL) {
+            $link = $this->getUrl();
         }
 
         $parameters = array(
@@ -101,6 +105,7 @@ class Facebook
         );
 
         return $this->latte->renderToString(__DIR__ . '/templates/fbComments.latte', $parameters);
+
     }
 
     /**
@@ -111,9 +116,9 @@ class Facebook
      * @param string $faces|FALSE
      * return string of html
      */
-    public function renderLikeButton($link, $shareButton = FALSE, $layout = self::LAYOUT_BUTTON_COUNT, $size = self::SIZE_SMALL, $showFaces = FALSE)
+    public function renderLikeButton($link = NULL, $shareButton = FALSE, $layout = self::LAYOUT_BUTTON_COUNT, $size = self::SIZE_SMALL, $showFaces = FALSE)
     {
-        if ($link === '' || $link == NULL  || $link === 'NULL') {
+        if ($link === '' || $link === 'NULL') {
             throw new InputException('Link must be defined.', 500);
         }
 
@@ -127,6 +132,10 @@ class Facebook
 
         if (!in_array($size,self::SIZE_OPTIONS)) {
             throw new InputException('Size must be select from options.', 500);
+        }
+
+        if ($link == NULL) {
+            $link = $this->getUrl();
         }
 
         $parameters = array(
@@ -147,9 +156,9 @@ class Facebook
      * @param boolean $mobileFrame|FALSE
      * return string of html
      */
-    public function renderShareButton($shareLink,$layout = self::LAYOUT_BUTTON_COUNT, $size = self::SIZE_SMALL,$mobileFrame = FALSE)
+    public function renderShareButton($shareLink = NULL,$layout = self::LAYOUT_BUTTON_COUNT, $size = self::SIZE_SMALL,$mobileFrame = FALSE)
     {
-        if ($shareLink === '' || $shareLink == NULL  || $shareLink === 'NULL') {
+        if ($shareLink === '' || $shareLink === 'NULL') {
             throw new InputException('Share link must be defined in correct format.', 500);
         }
 
@@ -163,6 +172,10 @@ class Facebook
 
         if (!is_bool($mobileFrame)) {
             throw new InputException('This value (mobileFrame) must be boolean.', 500);
+        }
+
+        if ($shareLink == NULL) {
+            $shareLink = $this->getUrl();
         }
 
         $parameters = array(
@@ -267,5 +280,12 @@ class Facebook
     public function setLocale($locale)
     {
         $this->locale = $locale;
+    }
+
+    protected function getUrl()
+    {
+        $actual_link = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+
+        return $actual_link;
     }
 }

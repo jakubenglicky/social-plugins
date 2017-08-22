@@ -47,9 +47,6 @@ class FacebookExceptionsTest extends TestCase
             $this->fb->renderComments('');
         },\SocialPlugins\Facebook\Exception\InputException::class,'Link must be defined.');
 
-        Assert::exception(function ()   {
-            $this->fb->renderComments(NULL);
-        },\SocialPlugins\Facebook\Exception\InputException::class,'Link must be defined.');
 
         Assert::exception(function ()   {
             $this->fb->renderComments('http://github.com/','a');
@@ -74,9 +71,6 @@ class FacebookExceptionsTest extends TestCase
             $this->fb->renderLikeButton('');
         },\SocialPlugins\Facebook\Exception\InputException::class,'Link must be defined.');
 
-        Assert::exception(function ()   {
-            $this->fb->renderLikeButton(NULL);
-        },\SocialPlugins\Facebook\Exception\InputException::class,'Link must be defined.');
 
         Assert::exception(function ()   {
             $this->fb->renderLikeButton('http://github.com/',123);
@@ -98,9 +92,6 @@ class FacebookExceptionsTest extends TestCase
             $this->fb->renderShareButton('');
         },\SocialPlugins\Facebook\Exception\InputException::class,'Share link must be defined in correct format.');
 
-        Assert::exception(function ()   {
-            $this->fb->renderShareButton(NULL);
-        },\SocialPlugins\Facebook\Exception\InputException::class,'Share link must be defined in correct format.');
 
         Assert::exception(function ()   {
         $this->fb->renderShareButton('http://github.com/','test');
