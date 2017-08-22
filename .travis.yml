@@ -3,6 +3,17 @@ php:
   - '5.6'
   - '7.0'
   - '7.1'
-  
-before_script: composer install
-script: vendor/bin/tester ./tests
+
+env:
+    - PHP_BIN=php
+    - PHP_BIN=php-cgi
+
+before_install:
+    # turn off XDebug
+    - phpenv config-rm xdebug.ini || return 0
+
+install:
+    - travis_retry composer install --no-progress --prefer-dist
+
+script:
+    - vendor/bin/tester -p $PHP_BIN tests -s
