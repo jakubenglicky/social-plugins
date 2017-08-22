@@ -25,8 +25,10 @@ class Facebook
     private $locale;
 
     /**
-     * @param string $appId
+     * @var integer $commentsWidth|550
      */
+    private $commentsWidth;
+
 
     /* Layouts */
     const LAYOUT_BUTTON_COUNT = 'button_count';
@@ -51,9 +53,11 @@ class Facebook
 
     const TABS_OPTIONS = [self::PAGE_TIMELINE, self::PAGE_EVENTS, self::PAGE_MESSAGES];
 
-    public function __construct()
+    public function __construct($globalCommentsWidth = 550)
     {
         $this->latte = new \Latte\Engine();
+
+        $this->commentsWidth = $globalCommentsWidth;
 
         $this->setLocale('cs_CZ');
     }
@@ -77,10 +81,14 @@ class Facebook
      * return string of html
      */
 
-    public function renderComments($link = NULL, $limit = 5, $width = 550)
+    public function renderComments($link = NULL, $limit = 5, $width = NULL)
     {
         if ($link === '' || $link === 'NULL') {
             throw new InputException('Link must be defined.', 500);
+        }
+
+        if ($width == NULL) {
+            $width = $this->commentsWidth;
         }
 
         if (!is_integer($limit) || !is_integer($width)) {
