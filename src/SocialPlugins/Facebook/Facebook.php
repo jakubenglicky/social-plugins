@@ -57,7 +57,7 @@ class Facebook
     {
         $this->latte = new \Latte\Engine();
 
-        $this->commentsWidth = $globalCommentsWidth;
+        $this->setCommentsWidth($globalCommentsWidth);
 
         $this->setLocale('cs_CZ');
     }
@@ -281,6 +281,18 @@ class Facebook
     public function setLocale($locale)
     {
         $this->locale = $locale;
+    }
+
+    /**
+     * @param integer $width
+     */
+    public function setCommentsWidth($width)
+    {
+        if (!is_integer($width)) {
+            throw new InputException('Width must be integer.',500);
+        }
+
+        $this->commentsWidth = $width;
     }
 
     protected function getUrl()

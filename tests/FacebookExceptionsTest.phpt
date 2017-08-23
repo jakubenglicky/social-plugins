@@ -157,6 +157,13 @@ class FacebookExceptionsTest extends TestCase
             $this->fb->renderPagePlugin('https://www.facebook.cz/zuck',$fb::PAGE_TIMELINE,450,80,'foo','bar','foo');
         },\jakubenglicky\SocialPlugins\Facebook\Exception\InputException::class,'These values (smallHeader,hideCoverPhoto,showFaces) must be boolean.');
     }
+
+    public function testSetterException()
+    {
+        Assert::exception(function ()   {
+            $this->fb->setCommentsWidth('foo');
+        },\jakubenglicky\SocialPlugins\Facebook\Exception\InputException::class,'Width must be integer.');
+    }
 }
 
 
