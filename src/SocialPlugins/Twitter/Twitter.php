@@ -49,7 +49,7 @@ class Twitter
 		return $this->helpers->latte->renderToString(__DIR__ . '/templates/twButton.latte', $parameters);
 	}
 
-	public function renderFollowButton($twitterLink, $size = self::SIZE_SMALL, $hideUsername = FALSE, $hideFollowCount = FALSE)
+	public function renderFollowButton($twitterLink, $size = self::SIZE_SMALL, $hideUsername = FALSE, $hideFollowCount = TRUE)
 	{
 		if (!filter_var($twitterLink, FILTER_VALIDATE_URL)) {
 			throw new InputException('Twitter link must be in corrent format.', 500);
@@ -70,8 +70,8 @@ class Twitter
 		$parameters = array(
 			"link" => $twitterLink,
 			"size" => $size,
-			"username" => ($hideUsername) ? 'true' : 'false',
-			"count" => ($hideFollowCount) ? 'true' : 'false',
+			"username" => ($hideUsername) ? 'false' : 'true',
+			"count" => ($hideFollowCount) ? 'false' : 'true',
 		);
 
 		return $this->helpers->latte->renderToString(__DIR__ . '/templates/twFollow.latte', $parameters);
