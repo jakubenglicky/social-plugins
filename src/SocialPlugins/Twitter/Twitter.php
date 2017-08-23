@@ -14,7 +14,7 @@ class Twitter
 	const SIZE_SMALL = 'small';
 	const SIZE_LARGE = 'large';
 
-	public function __construct($globalCommentsWidth = 550)
+	public function __construct()
 	{
 		$this->helpers = new Helpers();
 	}
