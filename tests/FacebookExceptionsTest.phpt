@@ -24,32 +24,32 @@ class FacebookExceptionsTest extends TestCase
     public function testComments()
     {
         Assert::exception(function ()   {
-            $this->fb->renderComments('');
-        },\jakubenglicky\SocialPlugins\Facebook\Exception\InputException::class,'Link must be defined.');
+            $this->fb->renderComments(5,550,'');
+        },\jakubenglicky\SocialPlugins\Facebook\Exception\InputException::class,'Link must be in corrent format.');
 
         Assert::exception(function ()   {
-            $this->fb->renderComments('http://github.com/','a');
+            $this->fb->renderComments('5',22,'http://github.com/');
         },\jakubenglicky\SocialPlugins\Facebook\Exception\InputException::class,'These values (limit, width) must be integer.');
 
         Assert::exception(function ()   {
-            $this->fb->renderComments('http://github.com/',5,'a');
+            $this->fb->renderComments('a','b','http://github.com/');
         },\jakubenglicky\SocialPlugins\Facebook\Exception\InputException::class,'These values (limit, width) must be integer.');
 
         Assert::exception(function ()   {
-            $this->fb->renderComments('http://github.com/','a','b');
+            $this->fb->renderComments('a',200,'http://github.com/');
         },\jakubenglicky\SocialPlugins\Facebook\Exception\InputException::class,'These values (limit, width) must be integer.');
 
         Assert::exception(function ()   {
-            $this->fb->renderComments('http://github.com/','a',200);
+            $this->fb->renderComments('55',200,'http://github.com/');
         },\jakubenglicky\SocialPlugins\Facebook\Exception\InputException::class,'These values (limit, width) must be integer.');
     }
 
     public function testLike()
     {
-
         Assert::exception(function ()   {
-            $this->fb->renderLikeButton('');
-        },\jakubenglicky\SocialPlugins\Facebook\Exception\InputException::class,'Link must be defined.');
+            $fb = $this->fb;
+            $this->fb->renderLikeButton(FALSE,$fb::LAYOUT_BOX_COUNT,$fb::SIZE_SMALL,FALSE,'');
+        },\jakubenglicky\SocialPlugins\Facebook\Exception\InputException::class,'Link must be in corrent format.');
 
 
         Assert::exception(function ()   {
@@ -57,12 +57,13 @@ class FacebookExceptionsTest extends TestCase
         },\jakubenglicky\SocialPlugins\Facebook\Exception\InputException::class,'These values (shareButton, showFaces) must be boolean.');
 
         Assert::exception(function ()   {
-            $this->fb->renderLikeButton('http://github.com/',TRUE,'test');
+            $fb = $this->fb;
+            $this->fb->renderLikeButton(TRUE,'foo');
         },\jakubenglicky\SocialPlugins\Facebook\Exception\InputException::class,'Layout must be select from options.');
 
         Assert::exception(function ()   {
             $fb = $this->fb;
-            $this->fb->renderLikeButton('http://github.com/',TRUE,$fb::LAYOUT_BUTTON_COUNT,'big');
+            $this->fb->renderLikeButton(TRUE,$fb::LAYOUT_BOX_COUNT,'bar');
         },\jakubenglicky\SocialPlugins\Facebook\Exception\InputException::class,'Size must be select from options.');
     }
 
@@ -71,7 +72,7 @@ class FacebookExceptionsTest extends TestCase
     {
         Assert::exception(function ()   {
             $this->fb->renderShareButton('');
-        },\jakubenglicky\SocialPlugins\Facebook\Exception\InputException::class,'Share link must be defined in correct format.');
+        },\jakubenglicky\SocialPlugins\Facebook\Exception\InputException::class,'Share link must be in correct format.');
 
 
         Assert::exception(function ()   {
@@ -97,11 +98,11 @@ class FacebookExceptionsTest extends TestCase
     public function testFollow()
     {
         Assert::exception(function ()   {
-            $this->fb->renderFollowButton('');
+            $this->fb->renderFollowButton(NULL);
         },\jakubenglicky\SocialPlugins\Facebook\Exception\InputException::class,'Follow link must be defined in correct format.');
 
         Assert::exception(function ()   {
-            $this->fb->renderFollowButton(NULL);
+            $this->fb->renderFollowButton('');
         },\jakubenglicky\SocialPlugins\Facebook\Exception\InputException::class,'Follow link must be defined in correct format.');
 
         Assert::exception(function ()   {
@@ -127,11 +128,11 @@ class FacebookExceptionsTest extends TestCase
     {
         Assert::exception(function ()   {
             $this->fb->renderPagePlugin('');
-        },\jakubenglicky\SocialPlugins\Facebook\Exception\InputException::class,'Facebook page URL must be defined.');
+        },\jakubenglicky\SocialPlugins\Facebook\Exception\InputException::class,'Facebook page URL must be defined in correct format.');
 
         Assert::exception(function ()   {
             $this->fb->renderPagePlugin(NULL);
-        },\jakubenglicky\SocialPlugins\Facebook\Exception\InputException::class,'Facebook page URL must be defined.');
+        },\jakubenglicky\SocialPlugins\Facebook\Exception\InputException::class,'Facebook page URL must be defined in correct format.');
 
         Assert::exception(function ()   {
             $this->fb->renderPagePlugin('https://www.facebook.cz/zuck','foo');

@@ -81,10 +81,10 @@ class Facebook
      * return string of html
      */
 
-    public function renderComments($link = NULL, $limit = 5, $width = NULL)
+    public function renderComments($limit = 5, $width = NULL, $link = NULL)
     {
-        if ($link === '' || $link === 'NULL') {
-            throw new InputException('Link must be defined.', 500);
+        if (!filter_var($link, FILTER_VALIDATE_URL) && $link != NULL || $link === '') {
+            throw new InputException('Link must be in corrent format.', 500);
         }
 
         if ($width == NULL) {
@@ -117,10 +117,10 @@ class Facebook
      * @param string $faces|FALSE
      * return string of html
      */
-    public function renderLikeButton($link = NULL, $shareButton = FALSE, $layout = self::LAYOUT_BUTTON_COUNT, $size = self::SIZE_SMALL, $showFaces = FALSE)
+    public function renderLikeButton($shareButton = FALSE, $layout = self::LAYOUT_BUTTON_COUNT, $size = self::SIZE_SMALL, $showFaces = FALSE, $link = NULL)
     {
-        if ($link === '' || $link === 'NULL') {
-            throw new InputException('Link must be defined.', 500);
+        if (!filter_var($link, FILTER_VALIDATE_URL) && $link != NULL || $link === '') {
+            throw new InputException('Link must be in corrent format.', 500);
         }
 
         if (!is_bool($shareButton) || !is_bool($showFaces)) {
@@ -159,8 +159,8 @@ class Facebook
      */
     public function renderShareButton($shareLink = NULL,$layout = self::LAYOUT_BUTTON_COUNT, $size = self::SIZE_SMALL,$mobileFrame = FALSE)
     {
-        if ($shareLink === '' || $shareLink === 'NULL') {
-            throw new InputException('Share link must be defined in correct format.', 500);
+        if (!filter_var($shareLink, FILTER_VALIDATE_URL) && $shareLink != NULL || $shareLink === '') {
+            throw new InputException('Share link must be in correct format.', 500);
         }
 
         if (!in_array($layout,self::SHARE_LAYOUT_OPTIONS)) {
@@ -199,7 +199,7 @@ class Facebook
      */
     public function renderFollowButton($fbFollowLink, $width = 200, $size = self::SIZE_SMALL,$layout = self::LAYOUT_BUTTON_COUNT, $showFaces = FALSE)
     {
-        if ($fbFollowLink === '' || $fbFollowLink == NULL || $fbFollowLink === 'NULL') {
+        if (!filter_var($fbFollowLink, FILTER_VALIDATE_URL) || $fbFollowLink === '') {
             throw new InputException('Follow link must be defined in correct format.', 500);
         }
 
@@ -242,8 +242,8 @@ class Facebook
      */
     public function renderPagePlugin($fbPageLink, $tabs = self::PAGE_TIMELINE, $width = 350, $height = 500, $smallHeader = FALSE, $hideCoverPhoto = FALSE, $showFaces = FALSE)
     {
-        if ($fbPageLink === '' || $fbPageLink == NULL || $fbPageLink === 'NULL') {
-            throw new InputException('Facebook page URL must be defined.',500);
+        if (!filter_var($fbPageLink, FILTER_VALIDATE_URL) || $fbPageLink === '') {
+            throw new InputException('Facebook page URL must be defined in correct format.', 500);
         }
 
         if ($width < 180 || $width > 500) {

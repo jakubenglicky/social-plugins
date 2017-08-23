@@ -28,18 +28,18 @@ class FacebookTest extends TestCase
 
     public function testRenderComments()
     {
-        Assert::contains('fb-comments',$this->fb->renderComments('http://www.facebook.com/'));
+        Assert::contains('fb-comments',$this->fb->renderComments(5,550,'http://github.com/'));
     }
 
     public function testRenderLikeButton()
     {
         $fb = $this->fb;
 
-        Assert::contains('fb-like',$this->fb->renderLikeButton('http://www.facebook.com/'));
+        Assert::contains('fb-like',$this->fb->renderLikeButton(FALSE,$fb::LAYOUT_BOX_COUNT,$fb::SIZE_SMALL,FALSE,'http://www.facebook.com/'));
 
-        Assert::contains('data-share="1"',$this->fb->renderLikeButton('http://www.facebook.com/', TRUE));
+        Assert::contains('data-share="1"',$this->fb->renderLikeButton(TRUE,$fb::LAYOUT_BOX_COUNT,$fb::SIZE_SMALL,FALSE,'http://www.facebook.com/'));
 
-        Assert::contains('data-layout="box_count"',$this->fb->renderLikeButton('http://www.facebook.com/', FALSE,$fb::LAYOUT_BOX_COUNT));
+        Assert::contains('data-layout="box_count"',$this->fb->renderLikeButton(FALSE,$fb::LAYOUT_BOX_COUNT,$fb::SIZE_SMALL,FALSE,'http://www.facebook.com/'));
     }
 
     public function testRenderShareButton()
