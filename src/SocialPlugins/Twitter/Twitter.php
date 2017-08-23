@@ -24,7 +24,7 @@ class Twitter
 		return $this->helpers->latte->renderToString(__DIR__ . '/templates/twScript.latte');
 	}
 
-	public function renderTweetButton($link = NULL, $size = self::SIZE_SMALL)
+	public function renderTweetButton($size = self::SIZE_SMALL, $link = NULL)
 	{
 		if ($link == NULL) {
 			$link = $this->helpers->getUrl();
@@ -36,5 +36,17 @@ class Twitter
 		);
 
 		return $this->helpers->latte->renderToString(__DIR__ . '/templates/twButton.latte', $parameters);
+	}
+
+	public function renderFollowButton($twitterLink, $size = self::SIZE_SMALL, $hideUsername = FALSE, $hideFollowCount = FALSE)
+	{
+		$parameters = array(
+			"link" => $twitterLink,
+			"size" => $size,
+			"username" => ($hideUsername) ? 'true' : 'false',
+			"count" => ($hideFollowCount) ? 'true' : 'false',
+		);
+
+		return $this->helpers->latte->renderToString(__DIR__ . '/templates/twFollow.latte', $parameters);
 	}
 }
