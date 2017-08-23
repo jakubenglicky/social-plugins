@@ -10,9 +10,9 @@ use jakubenglicky\SocialPlugins\Facebook\Exception\InputException;
 class Facebook
 {
     /**
-     * @var \Latte\Engine
+     * @var Helpers
      */
-    private $latte;
+    private $helpers;
 
     /**
      * @var integer
@@ -55,7 +55,7 @@ class Facebook
 
     public function __construct($globalCommentsWidth = 550)
     {
-        $this->latte = new \Latte\Engine();
+        $this->helpers = new Helpers();
 
         $this->setCommentsWidth($globalCommentsWidth);
 
@@ -71,7 +71,7 @@ class Facebook
             "locale" => $this->locale,
         );
 
-        return $this->latte->renderToString(__DIR__ . '/templates/fbRoot.latte', $parameters);
+        return $this->helpers->latte->renderToString(__DIR__ . '/templates/fbRoot.latte', $parameters);
     }
 
     /**
@@ -96,7 +96,7 @@ class Facebook
         }
 
         if ($link == NULL) {
-            $link = $this->getUrl();
+            $link = $this->helpers->getUrl();
         }
 
         $parameters = array(
@@ -105,7 +105,7 @@ class Facebook
             "width" => $width,
         );
 
-        return $this->latte->renderToString(__DIR__ . '/templates/fbComments.latte', $parameters);
+        return $this->helpers->latte->renderToString(__DIR__ . '/templates/fbComments.latte', $parameters);
 
     }
 
@@ -136,7 +136,7 @@ class Facebook
         }
 
         if ($link == NULL) {
-            $link = $this->getUrl();
+            $link = $this->helpers->getUrl();
         }
 
         $parameters = array(
@@ -147,7 +147,7 @@ class Facebook
             "faces" => $showFaces,
         );
 
-        return $this->latte->renderToString(__DIR__ . '/templates/fbLike.latte', $parameters);
+        return $this->helpers->latte->renderToString(__DIR__ . '/templates/fbLike.latte', $parameters);
     }
 
     /**
@@ -176,7 +176,7 @@ class Facebook
         }
 
         if ($shareLink == NULL) {
-            $shareLink = $this->getUrl();
+            $shareLink = $this->helpers->getUrl();
         }
 
         $parameters = array(
@@ -186,7 +186,7 @@ class Facebook
             "mobileFrame" => $mobileFrame,
         );
 
-        return $this->latte->renderToString(__DIR__ . '/templates/fbShare.latte', $parameters);
+        return $this->helpers->latte->renderToString(__DIR__ . '/templates/fbShare.latte', $parameters);
     }
 
     /**
@@ -227,7 +227,7 @@ class Facebook
             "width" => $width,
         );
 
-        return $this->latte->renderToString(__DIR__ . '/templates/fbFollow.latte', $parameters);
+        return $this->helpers->latte->renderToString(__DIR__ . '/templates/fbFollow.latte', $parameters);
     }
 
     /**
@@ -272,7 +272,7 @@ class Facebook
             "faces" => $showFaces,
         );
 
-        return $this->latte->renderToString(__DIR__ . '/templates/fbPage.latte', $parameters);
+        return $this->helpers->latte->renderToString(__DIR__ . '/templates/fbPage.latte', $parameters);
     }
 
     /**
@@ -293,12 +293,5 @@ class Facebook
         }
 
         $this->commentsWidth = $width;
-    }
-
-    protected function getUrl()
-    {
-        $actual_link = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-
-        return $actual_link;
     }
 }
