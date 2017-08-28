@@ -22,5 +22,13 @@ jobs:
     include:
         -   stage: Coding Standard
             php: 7.1
+
             install:
+                - travis_retry composer install --no-progress --prefer-dist
+
+            script:
                 - vendor/bin/phpcs --standard=ruleset.xml --extensions=php,phpt src/ tests/
+
+notifications:
+    email: false
+
