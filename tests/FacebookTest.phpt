@@ -1,4 +1,5 @@
 <?php
+namespace jakubenglicky\SocialPlugins\Tests
 
 use Tester\Assert;
 use Tester\TestCase;
@@ -23,46 +24,42 @@ class FacebookTest extends TestCase
 
     public function testRenderInit()
     {
-        Assert::contains('fb-root',$this->fb->renderInit());
+        Assert::contains('fb-root', $this->fb->renderInit());
     }
 
     public function testRenderComments()
     {
-        Assert::contains('fb-comments',$this->fb->renderComments(5,550,'http://github.com/'));
+        Assert::contains('fb-comments', $this->fb->renderComments(5, 550, 'http://github.com/'));
     }
 
     public function testRenderLikeButton()
     {
         $fb = $this->fb;
 
-        Assert::contains('fb-like',$this->fb->renderLikeButton(FALSE,$fb::LAYOUT_BOX_COUNT,$fb::SIZE_SMALL,FALSE,'http://www.facebook.com/'));
+        Assert::contains('fb-like', $this->fb->renderLikeButton(false, $fb::LAYOUT_BOX_COUNT, $fb::SIZE_SMALL, false, 'http://www.facebook.com/'));
 
-        Assert::contains('data-share="1"',$this->fb->renderLikeButton(TRUE,$fb::LAYOUT_BOX_COUNT,$fb::SIZE_SMALL,FALSE,'http://www.facebook.com/'));
+        Assert::contains('data-share="1"', $this->fb->renderLikeButton(true, $fb::LAYOUT_BOX_COUNT, $fb::SIZE_SMALL, false, 'http://www.facebook.com/'));
 
-        Assert::contains('data-layout="box_count"',$this->fb->renderLikeButton(FALSE,$fb::LAYOUT_BOX_COUNT,$fb::SIZE_SMALL,FALSE,'http://www.facebook.com/'));
+        Assert::contains('data-layout="box_count"', $this->fb->renderLikeButton(false, $fb::LAYOUT_BOX_COUNT, $fb::SIZE_SMALL, false, 'http://www.facebook.com/'));
     }
 
     public function testRenderShareButton()
     {
 
-        Assert::contains('fb-share-button',$this->fb->renderShareButton('http://www.facebook.com/'));
-
+        Assert::contains('fb-share-button', $this->fb->renderShareButton('http://www.facebook.com/'));
     }
 
     public function testRenderFollowButton()
     {
 
-        Assert::contains('fb-follow',$this->fb->renderFollowButton('http://www.facebook.com/zuck'));
-
+        Assert::contains('fb-follow', $this->fb->renderFollowButton('http://www.facebook.com/zuck'));
     }
 
     public function testRenderPagePlugin()
     {
 
         Assert::contains('fb-page', $this->fb->renderPagePlugin('http://www.facebook.com/zuck'));
-
     }
-
 }
 
 

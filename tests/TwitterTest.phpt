@@ -1,4 +1,5 @@
 <?php
+namespace jakubenglicky\SocialPlugins\Tests
 
 use Tester\Assert;
 use Tester\TestCase;
@@ -23,21 +24,20 @@ class TwitterTest extends TestCase
 
     public function testRenderJs()
     {
-        Assert::contains('//platform.twitter.com/widgets.js',$this->tw->renderJs());
+        Assert::contains('//platform.twitter.com/widgets.js', $this->tw->renderJs());
     }
 
     public function testRenderTweetButton()
     {
         $tw = $this->tw;
-        Assert::contains('twitter-share-button',$this->tw->renderTweetButton($tw::SIZE_SMALL,'http://github.com/'));
+        Assert::contains('twitter-share-button', $this->tw->renderTweetButton($tw::SIZE_SMALL, 'http://github.com/'));
     }
 
     public function testRenderFollowButton()
     {
         $tw = $this->tw;
-        Assert::contains('twitter-follow-button',$this->tw->renderFollowButton('https://twitter.com/kubaenglicky',$tw::SIZE_SMALL));
+        Assert::contains('twitter-follow-button', $this->tw->renderFollowButton('https://twitter.com/kubaenglicky', $tw::SIZE_SMALL));
     }
-
 }
 
 

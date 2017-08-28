@@ -1,4 +1,5 @@
 <?php
+namespace jakubenglicky\SocialPlugins\Tests
 
 use Tester\Assert;
 use Tester\TestCase;
@@ -23,47 +24,47 @@ class TwitterExceptionsTest extends TestCase
 
     public function testTweetButton()
     {
-        Assert::exception(function ()   {
+        Assert::exception(function () {
             $this->tw->renderTweetButton('foo');
-        },\jakubenglicky\SocialPlugins\Twitter\Exception\InputException::class,'Size must be select from options.');
+        }, \jakubenglicky\SocialPlugins\Twitter\Exception\InputException::class, 'Size must be select from options.');
 
-        Assert::exception(function ()   {
+        Assert::exception(function () {
             $tw = $this->tw;
-            $this->tw->renderTweetButton($tw::SIZE_SMALL,'');
-        },\jakubenglicky\SocialPlugins\Twitter\Exception\InputException::class,'Link must be in corrent format.');
+            $this->tw->renderTweetButton($tw::SIZE_SMALL, '');
+        }, \jakubenglicky\SocialPlugins\Twitter\Exception\InputException::class, 'Link must be in corrent format.');
 
-        Assert::exception(function ()   {
+        Assert::exception(function () {
             $tw = $this->tw;
-            $this->tw->renderTweetButton($tw::SIZE_SMALL,'foo');
-        },\jakubenglicky\SocialPlugins\Twitter\Exception\InputException::class,'Link must be in corrent format.');
+            $this->tw->renderTweetButton($tw::SIZE_SMALL, 'foo');
+        }, \jakubenglicky\SocialPlugins\Twitter\Exception\InputException::class, 'Link must be in corrent format.');
     }
 
     public function testFollowButton()
     {
-        Assert::exception(function ()   {
+        Assert::exception(function () {
             $this->tw->renderFollowButton('');
-        },\jakubenglicky\SocialPlugins\Twitter\Exception\InputException::class,'Twitter link must be in corrent format.');
+        }, \jakubenglicky\SocialPlugins\Twitter\Exception\InputException::class, 'Twitter link must be in corrent format.');
 
-        Assert::exception(function ()   {
+        Assert::exception(function () {
             $this->tw->renderFollowButton('NULL');
-        },\jakubenglicky\SocialPlugins\Twitter\Exception\InputException::class,'Twitter link must be in corrent format.');
+        }, \jakubenglicky\SocialPlugins\Twitter\Exception\InputException::class, 'Twitter link must be in corrent format.');
 
-        Assert::exception(function ()   {
-            $this->tw->renderFollowButton(NULL);
-        },\jakubenglicky\SocialPlugins\Twitter\Exception\InputException::class,'Twitter link must be in corrent format.');
+        Assert::exception(function () {
+            $this->tw->renderFollowButton(null);
+        }, \jakubenglicky\SocialPlugins\Twitter\Exception\InputException::class, 'Twitter link must be in corrent format.');
 
-        Assert::exception(function ()   {
+        Assert::exception(function () {
             $this->tw->renderFollowButton('github.com');
-        },\jakubenglicky\SocialPlugins\Twitter\Exception\InputException::class,'Twitter link must be in corrent format.');
+        }, \jakubenglicky\SocialPlugins\Twitter\Exception\InputException::class, 'Twitter link must be in corrent format.');
 
-        Assert::exception(function ()   {
-            $this->tw->renderFollowButton('http://github.com/','bar');
-        },\jakubenglicky\SocialPlugins\Twitter\Exception\InputException::class,'Size must be select from options.');
+        Assert::exception(function () {
+            $this->tw->renderFollowButton('http://github.com/', 'bar');
+        }, \jakubenglicky\SocialPlugins\Twitter\Exception\InputException::class, 'Size must be select from options.');
 
-        Assert::exception(function ()   {
+        Assert::exception(function () {
             $tw = $this->tw;
-            $this->tw->renderFollowButton('http://github.com/',$tw::SIZE_SMALL,'false','');
-        },\jakubenglicky\SocialPlugins\Twitter\Exception\InputException::class,'These values (hideUsername, hideFollowCount) must be boolean.');
+            $this->tw->renderFollowButton('http://github.com/', $tw::SIZE_SMALL, 'false', '');
+        }, \jakubenglicky\SocialPlugins\Twitter\Exception\InputException::class, 'These values (hideUsername, hideFollowCount) must be boolean.');
     }
 }
 
