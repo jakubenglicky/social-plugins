@@ -28,3 +28,14 @@ Usage
     echo $fb->renderShareButton();
     echo $fb->renderFollowButton('http://www.facebook.com/zuck');
     echo $fb->renderPagePlugin('https://www.facebook.com/FacebookforDevelopers');
+
+
+*Twitter*
+
+	$tw = new jakubenglicky\SocialPlugins\Twitter();
+
+    // Render link to twitter.js file
+    echo $tw->renderJs();
+
+    echo $tw->renderTweetButton();
+    echo $tw->renderFollowButton('https://twitter.com/kubaenglicky');
