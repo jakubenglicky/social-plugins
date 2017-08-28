@@ -1,5 +1,5 @@
 <?php
-namespace jakubenglicky\SocialPlugins\Tests
+namespace jakubenglicky\SocialPlugins\Tests;
 
 use Tester\Assert;
 use Tester\TestCase;
