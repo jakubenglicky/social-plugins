@@ -39,3 +39,10 @@ Usage
 
     echo $tw->renderTweetButton();
     echo $tw->renderFollowButton('https://twitter.com/kubaenglicky');
+
+*You can use all in one*
+
+	$hub = new jakubenglicky\SocialPlugins\Hub();
+
+	$hub->fb; //instance of jakubenglicky\SocialPlugins\Facebook()
+	$hub->tw; //instance of jakubenglicky\SocialPlugins\Twitter()
