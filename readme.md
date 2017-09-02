@@ -6,7 +6,10 @@ SocialPlugins
 
 This is the simple wrapper around implementing social plugins to your websites.
 
-More info (Facebook) -> https://developers.facebook.com/ 
+More info (Facebook) -> https://developers.facebook.com/
+
+More info (Twitter) -> https://dev.twitter.com/
+
 
 Instalation
 -----------
