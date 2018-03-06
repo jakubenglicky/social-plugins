@@ -1,10 +1,12 @@
 <?php
 namespace jakubenglicky\SocialPlugins\Tests;
 
+use jakubenglicky\SocialPlugins\Facebook;
+use jakubenglicky\SocialPlugins\Facebook\Constains;
 use Tester\Assert;
 use Tester\TestCase;
 
-require_once "bootstrap.php";
+require_once __DIR__ . "/bootstrap.php";
 /**
  * @testCase
  */
@@ -14,12 +16,12 @@ class FacebookTest extends TestCase
 
     public function __construct()
     {
-        $this->fb = new \jakubenglicky\SocialPlugins\Facebook();
+        $this->fb = new Facebook();
     }
 
     public function testInstance()
     {
-        Assert::true($this->fb instanceof \jakubenglicky\SocialPlugins\Facebook);
+        Assert::true($this->fb instanceof Facebook);
     }
 
     public function testRenderInit()
@@ -34,13 +36,11 @@ class FacebookTest extends TestCase
 
     public function testRenderLikeButton()
     {
-        $fb = $this->fb;
+        Assert::contains('fb-like', $this->fb->renderLikeButton(false, Constains::LAYOUT_BOX_COUNT, Constains::SIZE_SMALL, false, 'http://www.facebook.com/'));
 
-        Assert::contains('fb-like', $this->fb->renderLikeButton(false, $fb::LAYOUT_BOX_COUNT, $fb::SIZE_SMALL, false, 'http://www.facebook.com/'));
+        Assert::contains('data-share="1"', $this->fb->renderLikeButton(true, Constains::LAYOUT_BOX_COUNT, Constains::SIZE_SMALL, false, 'http://www.facebook.com/'));
 
-        Assert::contains('data-share="1"', $this->fb->renderLikeButton(true, $fb::LAYOUT_BOX_COUNT, $fb::SIZE_SMALL, false, 'http://www.facebook.com/'));
-
-        Assert::contains('data-layout="box_count"', $this->fb->renderLikeButton(false, $fb::LAYOUT_BOX_COUNT, $fb::SIZE_SMALL, false, 'http://www.facebook.com/'));
+        Assert::contains('data-layout="box_count"', $this->fb->renderLikeButton(false, Constains::LAYOUT_BOX_COUNT, Constains::SIZE_SMALL, false, 'http://www.facebook.com/'));
     }
 
     public function testRenderShareButton()
