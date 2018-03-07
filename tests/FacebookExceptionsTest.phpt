@@ -146,7 +146,7 @@ class FacebookExceptionsTest extends TestCase
         }, InputException::class, 'Height must be bigger then 70px.');
 
         Assert::exception(function () {
-            $this->fb->renderPagePlugin('https://www.facebook.cz/zuck',Constains::PAGE_TIMELINE, 450, 80, 'foo', 'bar', 'foo');
+            $this->fb->renderPagePlugin('https://www.facebook.cz/zuck', Constains::PAGE_TIMELINE, 450, 80, 'foo', 'bar', 'foo');
         }, InputException::class, 'These values (smallHeader,hideCoverPhoto,showFaces) must be boolean.');
     }
 
