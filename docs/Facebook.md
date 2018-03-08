@@ -20,7 +20,7 @@ You must render this div after opening `<body>` tag
 This method has 3 parameters - $limit, $width and $link. All these parameters can be nullable.
 
 	$limit - how much comments show for first look
-	$width - by default set on 550px or set from globally comments width or set with method setCommentsWidth()
+	$width - by default set on 550px or set with method setCommentsWidth()
 	$link - you can set the link of the page which you wish comment
 
 **Render LikeButton**
@@ -75,7 +75,7 @@ This method has 7 parameters - **$fbPageLink**, $tabs, $width, $height, $smallHe
 	$hideCoverPhoto - TRUE/FALSE
 	$showFaces - TRUE/FALSE
 
-*For more info about facebook api you can visit https://developers.facebook.com/*
+*For more info about facebook social plugins you can visit https://developers.facebook.com/*
 
 
 
