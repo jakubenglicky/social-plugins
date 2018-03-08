@@ -2,7 +2,8 @@
 namespace jakubenglicky\SocialPlugins\Tests;
 
 use jakubenglicky\SocialPlugins\Facebook;
-use jakubenglicky\SocialPlugins\Facebook\Constains;
+use jakubenglicky\SocialPlugins\Facebook\Options\Layout;
+use jakubenglicky\SocialPlugins\Facebook\Options\Size;
 use Tester\Assert;
 use Tester\TestCase;
 
@@ -36,11 +37,11 @@ class FacebookTest extends TestCase
 
     public function testRenderLikeButton()
     {
-        Assert::contains('fb-like', $this->fb->renderLikeButton(false, Constains::LAYOUT_BOX_COUNT, Constains::SIZE_SMALL, false, 'http://www.facebook.com/'));
+        Assert::contains('fb-like', $this->fb->renderLikeButton(false, Layout::BOX_COUNT, Size::SMALL, false, 'http://www.facebook.com/'));
 
-        Assert::contains('data-share="1"', $this->fb->renderLikeButton(true, Constains::LAYOUT_BOX_COUNT, Constains::SIZE_SMALL, false, 'http://www.facebook.com/'));
+        Assert::contains('data-share="1"', $this->fb->renderLikeButton(true, Layout::BOX_COUNT, Size::SMALL, false, 'http://www.facebook.com/'));
 
-        Assert::contains('data-layout="box_count"', $this->fb->renderLikeButton(false, Constains::LAYOUT_BOX_COUNT, Constains::SIZE_SMALL, false, 'http://www.facebook.com/'));
+        Assert::contains('data-layout="box_count"', $this->fb->renderLikeButton(false, Layout::BOX_COUNT, Size::SMALL, false, 'http://www.facebook.com/'));
     }
 
     public function testRenderShareButton()

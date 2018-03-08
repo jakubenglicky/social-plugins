@@ -1,7 +1,9 @@
 <?php
 namespace jakubenglicky\SocialPlugins\Tests;
 
-use jakubenglicky\SocialPlugins\Facebook\Constains;
+use jakubenglicky\SocialPlugins\Facebook\Options\Layout;
+use jakubenglicky\SocialPlugins\Facebook\Options\Size;
+use jakubenglicky\SocialPlugins\Facebook\Options\Tab;
 use jakubenglicky\SocialPlugins\Facebook\Exception\InputException;
 use Tester\Assert;
 use Tester\TestCase;
@@ -28,7 +30,7 @@ class FacebookExceptionsTest extends TestCase
     {
         Assert::exception(function () {
             $this->fb->renderComments(5, 550, '');
-        }, InputException::class, 'Link must be in corrent format.');
+        }, InputException::class, 'Link must be in correct format.');
 
         Assert::exception(function () {
             $this->fb->renderComments('5', 22, 'http://github.com/');
@@ -50,7 +52,7 @@ class FacebookExceptionsTest extends TestCase
     public function testLike()
     {
         Assert::exception(function () {
-            $this->fb->renderLikeButton(false, Constains::LAYOUT_BOX_COUNT, Constains::SIZE_SMALL, false, '');
+            $this->fb->renderLikeButton(false, Layout::BOX_COUNT, Size::SMALL, false, '');
         }, InputException::class, 'Link must be in corrent format.');
 
 
@@ -63,7 +65,7 @@ class FacebookExceptionsTest extends TestCase
         }, InputException::class, 'Layout must be select from options.');
 
         Assert::exception(function () {
-            $this->fb->renderLikeButton(true, Constains::LAYOUT_BOX_COUNT, 'bar');
+            $this->fb->renderLikeButton(true, Layout::BOX_COUNT, 'bar');
         }, InputException::class, 'Size must be select from options.');
     }
 
@@ -80,15 +82,15 @@ class FacebookExceptionsTest extends TestCase
         }, InputException::class, 'Layout must be select from options.');
 
         Assert::exception(function () {
-            $this->fb->renderShareButton('http://github.com/', Constains::LAYOUT_STANDARD);
+            $this->fb->renderShareButton('http://github.com/', Layout::STANDARD);
         }, InputException::class, 'Layout must be select from options.');
 
         Assert::exception(function () {
-            $this->fb->renderShareButton('http://github.com/', Constains::LAYOUT_BUTTON_COUNT, 'big');
+            $this->fb->renderShareButton('http://github.com/', Layout::BUTTON_COUNT, 'big');
         }, InputException::class, 'Size must be select from options.');
 
         Assert::exception(function () {
-            $this->fb->renderShareButton('http://github.com/', Constains::LAYOUT_BUTTON_COUNT, Constains::SIZE_SMALL, 'aaa');
+            $this->fb->renderShareButton('http://github.com/', Layout::BUTTON_COUNT, Size::SMALL, 'aaa');
         }, InputException::class, 'This value (mobileFrame) must be boolean.');
     }
 
@@ -111,11 +113,11 @@ class FacebookExceptionsTest extends TestCase
         }, InputException::class, 'Size must be select from options.');
 
         Assert::exception(function () {
-            $this->fb->renderFollowButton('https://www.facebook.cz/zuck', 200, Constains::SIZE_SMALL, 'test');
+            $this->fb->renderFollowButton('https://www.facebook.cz/zuck', 200, Size::SMALL, 'test');
         }, InputException::class, 'Layout must be select from options.');
 
         Assert::exception(function () {
-            $this->fb->renderFollowButton('https://www.facebook.cz/zuck', 200, Constains::SIZE_SMALL, Constains::LAYOUT_BUTTON_COUNT, 'string');
+            $this->fb->renderFollowButton('https://www.facebook.cz/zuck', 200, Size::SMALL, Layout::BUTTON_COUNT, 'string');
         }, InputException::class, 'This value (showFaces) must be boolean.');
     }
 
@@ -134,19 +136,19 @@ class FacebookExceptionsTest extends TestCase
         }, InputException::class, 'Tab must be select from options.');
 
         Assert::exception(function () {
-            $this->fb->renderPagePlugin('https://www.facebook.cz/zuck', Constains::PAGE_TIMELINE, 50);
+            $this->fb->renderPagePlugin('https://www.facebook.cz/zuck', Tab::TIMELINE, 50);
         }, InputException::class, 'Width must be in this range -> (180-500)px.');
 
         Assert::exception(function () {
-            $this->fb->renderPagePlugin('https://www.facebook.cz/zuck', Constains::PAGE_TIMELINE, 600);
+            $this->fb->renderPagePlugin('https://www.facebook.cz/zuck', Tab::TIMELINE, 600);
         }, InputException::class, 'Width must be in this range -> (180-500)px.');
 
         Assert::exception(function () {
-            $this->fb->renderPagePlugin('https://www.facebook.cz/zuck', Constains::PAGE_TIMELINE, 450, 60);
+            $this->fb->renderPagePlugin('https://www.facebook.cz/zuck', Tab::TIMELINE, 450, 60);
         }, InputException::class, 'Height must be bigger then 70px.');
 
         Assert::exception(function () {
-            $this->fb->renderPagePlugin('https://www.facebook.cz/zuck', Constains::PAGE_TIMELINE, 450, 80, 'foo', 'bar', 'foo');
+            $this->fb->renderPagePlugin('https://www.facebook.cz/zuck', Tab::TIMELINE, 450, 80, 'foo', 'bar', 'foo');
         }, InputException::class, 'These values (smallHeader,hideCoverPhoto,showFaces) must be boolean.');
     }
 

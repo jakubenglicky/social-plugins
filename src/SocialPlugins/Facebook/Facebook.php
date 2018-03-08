@@ -5,7 +5,9 @@
 
 namespace jakubenglicky\SocialPlugins;
 
-use jakubenglicky\SocialPlugins\Facebook\Constains;
+use jakubenglicky\SocialPlugins\Facebook\Options\Layout;
+use jakubenglicky\SocialPlugins\Facebook\Options\Size;
+use jakubenglicky\SocialPlugins\Facebook\Options\Tab;
 use jakubenglicky\SocialPlugins\Facebook\Exception\InputException;
 
 /*
@@ -21,21 +23,17 @@ class Facebook
     /**
      * @var string $locale|'cs_CZ'
      */
-    private $locale;
+    private $locale = 'cs_CZ';
 
     /**
      * @var integer $commentsWidth|550
      */
-    private $commentsWidth;
+    private $commentsWidth = 550;
 
 
     public function __construct($globalCommentsWidth = 550)
     {
         $this->helpers = new Helpers();
-
-        $this->setCommentsWidth($globalCommentsWidth);
-
-        $this->setLocale('cs_CZ');
     }
 
     /**
@@ -63,7 +61,7 @@ class Facebook
     public function renderComments($limit = 5, $width = null, $link = null)
     {
         if (!filter_var($link, FILTER_VALIDATE_URL) && $link != null || $link === '') {
-            throw new InputException('Link must be in corrent format.', 500);
+            throw new InputException('Link must be in correct format.', 500);
         }
 
         if ($width == null) {
@@ -97,7 +95,7 @@ class Facebook
      * @throws InputException
      * return string of html
      */
-    public function renderLikeButton($shareButton = false, $layout = Constains::LAYOUT_BUTTON_COUNT, $size = Constains::SIZE_SMALL, $showFaces = false, $link = null)
+    public function renderLikeButton($shareButton = false, $layout = Layout::BUTTON_COUNT, $size = Size::SMALL, $showFaces = false, $link = null)
     {
         if (!filter_var($link, FILTER_VALIDATE_URL) && $link != null || $link === '') {
             throw new InputException('Link must be in corrent format.', 500);
@@ -107,11 +105,11 @@ class Facebook
             throw new InputException('These values (shareButton, showFaces) must be boolean.', 500);
         }
 
-        if (!in_array($layout, Constains::LIKE_FOLLOW_LAYOUT_OPTIONS)) {
+        if (!in_array($layout, Layout::FOLLOW_LAYOUT_OPTIONS)) {
             throw new InputException('Layout must be select from options.', 500);
         }
 
-        if (!in_array($size, Constains::SIZE_OPTIONS)) {
+        if (!in_array($size, Size::OPTIONS)) {
             throw new InputException('Size must be select from options.', 500);
         }
 
@@ -139,17 +137,17 @@ class Facebook
      * @throws InputException
      * return string of html
      */
-    public function renderShareButton($shareLink = null, $layout = Constains::LAYOUT_BUTTON_COUNT, $size = Constains::SIZE_SMALL, $mobileFrame = false)
+    public function renderShareButton($shareLink = null, $layout = Layout::BUTTON_COUNT, $size = Size::SMALL, $mobileFrame = false)
     {
         if (!filter_var($shareLink, FILTER_VALIDATE_URL) && $shareLink != null || $shareLink === '') {
             throw new InputException('Share link must be in correct format.', 500);
         }
 
-        if (!in_array($layout, Constains::SHARE_LAYOUT_OPTIONS)) {
+        if (!in_array($layout, Layout::SHARE_LAYOUT_OPTIONS)) {
             throw new InputException('Layout must be select from options.', 500);
         }
 
-        if (!in_array($size, Constains::SIZE_OPTIONS)) {
+        if (!in_array($size, Size::OPTIONS)) {
             throw new InputException('Size must be select from options.', 500);
         }
 
@@ -181,7 +179,7 @@ class Facebook
      * @throws InputException
      * return string of html
      */
-    public function renderFollowButton($fbFollowLink, $width = 200, $size = Constains::SIZE_SMALL, $layout = Constains::LAYOUT_BUTTON_COUNT, $showFaces = false)
+    public function renderFollowButton($fbFollowLink, $width = 200, $size = Size::SMALL, $layout = Layout::BUTTON_COUNT, $showFaces = false)
     {
         if (!filter_var($fbFollowLink, FILTER_VALIDATE_URL) || $fbFollowLink === '') {
             throw new InputException('Follow link must be defined in correct format.', 500);
@@ -191,11 +189,11 @@ class Facebook
             throw new InputException('Width must be integer.', 500);
         }
 
-        if (!in_array($size, Constains::SIZE_OPTIONS)) {
+        if (!in_array($size, Size::OPTIONS)) {
             throw new InputException('Size must be select from options.', 500);
         }
 
-        if (!in_array($layout, Constains::LIKE_FOLLOW_LAYOUT_OPTIONS)) {
+        if (!in_array($layout, Layout::FOLLOW_LAYOUT_OPTIONS)) {
             throw new InputException('Layout must be select from options.', 500);
         }
 
@@ -226,7 +224,7 @@ class Facebook
      * @throws InputException
      * return string of html
      */
-    public function renderPagePlugin($fbPageLink, $tabs = Constains::PAGE_TIMELINE, $width = 350, $height = 500, $smallHeader = false, $hideCoverPhoto = false, $showFaces = false)
+    public function renderPagePlugin($fbPageLink, $tabs = Tab::TIMELINE, $width = 350, $height = 500, $smallHeader = false, $hideCoverPhoto = false, $showFaces = false)
     {
         if (!filter_var($fbPageLink, FILTER_VALIDATE_URL) || $fbPageLink === '') {
             throw new InputException('Facebook page URL must be defined in correct format.', 500);
@@ -240,7 +238,7 @@ class Facebook
             throw new InputException('Height must be bigger then 70px.', 500);
         }
 
-        if (!in_array($tabs, Constains::TABS_OPTIONS)) {
+        if (!in_array($tabs, Tab::OPTIONS)) {
             throw new InputException('Tab must be select from options.', 500);
         }
 
