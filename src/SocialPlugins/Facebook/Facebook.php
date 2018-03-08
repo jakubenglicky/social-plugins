@@ -5,6 +5,7 @@
 
 namespace jakubenglicky\SocialPlugins;
 
+use jakubenglicky\SocialPlugins\Facebook\Options\Language;
 use jakubenglicky\SocialPlugins\Facebook\Options\Layout;
 use jakubenglicky\SocialPlugins\Facebook\Options\Size;
 use jakubenglicky\SocialPlugins\Facebook\Options\Tab;
@@ -23,7 +24,7 @@ class Facebook
     /**
      * @var string $locale|'cs_CZ'
      */
-    private $locale = 'cs_CZ';
+    private $locale;
 
     /**
      * @var integer $commentsWidth|550
@@ -34,6 +35,8 @@ class Facebook
     public function __construct($globalCommentsWidth = 550)
     {
         $this->helpers = new Helpers();
+
+        $this->setLocale(Language::CZECH);
     }
 
     /**
