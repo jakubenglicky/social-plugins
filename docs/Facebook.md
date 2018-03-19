@@ -10,7 +10,7 @@ Facebook
 You must render this div after opening `<body>` tag
 
 	$fb->renderInit();
-	$this->setLocale(Options\Language::ENGLISH); // for setting plugin language
+	$fb->setLocale(Options\Language::ENGLISH); // for setting plugin language
 	$fb->setCommentsWidth(550); // for setting global comments plugin width
 
 **Render comments**
