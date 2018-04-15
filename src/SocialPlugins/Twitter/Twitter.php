@@ -6,6 +6,7 @@
 namespace jakubenglicky\SocialPlugins;
 
 use jakubenglicky\SocialPlugins\Twitter\Exception\InputException;
+use jakubenglicky\SocialPlugins\Twitter\Options\Size;
 
 class Twitter
 {
@@ -13,12 +14,6 @@ class Twitter
      * @var Helpers
      */
     private $helpers;
-
-    /* Sizes */
-    const SIZE_SMALL = 'small';
-    const SIZE_LARGE = 'large';
-
-    const SIZE_OPTIONS = [self::SIZE_SMALL,self::SIZE_LARGE];
 
     public function __construct()
     {
@@ -30,9 +25,9 @@ class Twitter
         return $this->helpers->latte->renderToString(__DIR__ . '/templates/twScript.latte');
     }
 
-    public function renderTweetButton($size = self::SIZE_SMALL, $link = null)
+    public function renderTweetButton($size = Size::SMALL, $link = null)
     {
-        if (!in_array($size, self::SIZE_OPTIONS)) {
+        if (!in_array($size, Size::OPTIONS)) {
             throw new InputException('Size must be select from options.', 500);
         }
 
@@ -52,7 +47,7 @@ class Twitter
         return $this->helpers->latte->renderToString(__DIR__ . '/templates/twButton.latte', $parameters);
     }
 
-    public function renderFollowButton($twitterLink, $size = self::SIZE_SMALL, $hideUsername = false, $hideFollowCount = true)
+    public function renderFollowButton($twitterLink, $size = Size::SMALL, $hideUsername = false, $hideFollowCount = true)
     {
         if (!filter_var($twitterLink, FILTER_VALIDATE_URL)) {
             throw new InputException('Twitter link must be in corrent format.', 500);
@@ -62,7 +57,7 @@ class Twitter
             throw new InputException('Twitter link must be defined.', 500);
         }
 
-        if (!in_array($size, self::SIZE_OPTIONS)) {
+        if (!in_array($size, Size::OPTIONS)) {
             throw new InputException('Size must be select from options.', 500);
         }
 

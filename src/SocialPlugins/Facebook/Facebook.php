@@ -54,9 +54,10 @@ class Facebook
 
     /**
      * Get HTML of FB comments
-     * @param string $link
-     * @param integer $limit|5
-     * @param integer $width|550
+     *
+     * @param  string  $link
+     * @param  integer $limit|5
+     * @param  integer $width|550
      * @throws InputException
      * return string of html
      */
@@ -90,11 +91,12 @@ class Facebook
 
     /**
      * Get HTML of Like Button
-     * @param string $link
-     * @param boolean $shareButton|FALSE
-     * @param string $layout|button_count
-     * @param string $size|small
-     * @param string $showFaces|FALSE
+     *
+     * @param  string  $link
+     * @param  boolean $shareButton|FALSE
+     * @param  string  $layout|button_count
+     * @param  string  $size|small
+     * @param  string  $showFaces|FALSE
      * @throws InputException
      * return string of html
      */
@@ -133,10 +135,11 @@ class Facebook
 
     /**
      * Get HTML of Share Button
-     * @param string $shareLink
-     * @param string $layout|button_count
-     * @param string $size|small
-     * @param boolean $mobileFrame|FALSE
+     *
+     * @param  string  $shareLink
+     * @param  string  $layout|button_count
+     * @param  string  $size|small
+     * @param  boolean $mobileFrame|FALSE
      * @throws InputException
      * return string of html
      */
@@ -174,11 +177,12 @@ class Facebook
 
     /**
      * Get HTML of Follow Button
-     * @param string $fbFollowLink
-     * @param integer $width|200
-     * @param string $size|small
-     * @param boolean $layout|button_count
-     * @param boolean $showFaces
+     *
+     * @param  string  $fbFollowLink
+     * @param  integer $width|200
+     * @param  string  $size|small
+     * @param  boolean $layout|button_count
+     * @param  boolean $showFaces
      * @throws InputException
      * return string of html
      */
@@ -217,13 +221,14 @@ class Facebook
 
     /**
      * Get HTML of Page
-     * @param string $fbPageLink
-     * @param string $tabs
-     * @param integer $width|350
-     * @param integer $height|500
-     * @param boolean $smallHeader|FALSE
-     * @param boolean $hideCoverPhoto|FALSE
-     * @param boolean $showFaces|FALSE
+     *
+     * @param  string  $fbPageLink
+     * @param  string  $tabs
+     * @param  integer $width|350
+     * @param  integer $height|500
+     * @param  boolean $smallHeader|FALSE
+     * @param  boolean $hideCoverPhoto|FALSE
+     * @param  boolean $showFaces|FALSE
      * @throws InputException
      * return string of html
      */
@@ -264,6 +269,7 @@ class Facebook
 
     /**
      * Setter of locale property
+     *
      * @param string $locale
      */
     public function setLocale($locale)
@@ -273,8 +279,9 @@ class Facebook
 
     /**
      * Setter of commentWidth property
+     *
      * @throws InputException
-     * @param integer $width
+     * @param  integer $width
      */
     public function setCommentsWidth($width)
     {

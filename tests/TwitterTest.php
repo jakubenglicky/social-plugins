@@ -1,6 +1,7 @@
 <?php
 namespace jakubenglicky\SocialPlugins\Tests;
 
+use jakubenglicky\SocialPlugins\Twitter\Options\Size;
 use Tester\Assert;
 use Tester\TestCase;
 
@@ -29,14 +30,12 @@ class TwitterTest extends TestCase
 
     public function testRenderTweetButton()
     {
-        $tw = $this->tw;
-        Assert::contains('twitter-share-button', $this->tw->renderTweetButton($tw::SIZE_SMALL, 'http://github.com/'));
+        Assert::contains('twitter-share-button', $this->tw->renderTweetButton(Size::SMALL, 'http://github.com/'));
     }
 
     public function testRenderFollowButton()
     {
-        $tw = $this->tw;
-        Assert::contains('twitter-follow-button', $this->tw->renderFollowButton('https://twitter.com/kubaenglicky', $tw::SIZE_SMALL));
+        Assert::contains('twitter-follow-button', $this->tw->renderFollowButton('https://twitter.com/kubaenglicky', Size::SMALL));
     }
 }
 
