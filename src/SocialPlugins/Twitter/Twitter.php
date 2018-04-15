@@ -73,8 +73,8 @@ class Twitter
         $parameters = array(
             "link" => $twitterLink,
             "size" => $size,
-            "username" => ($hideUsername) ? 'false' : 'true',
-            "count" => ($hideFollowCount) ? 'false' : 'true',
+            "username" => $hideUsername,
+            "count" => $hideFollowCount,
         );
 
         return $this->helpers->latte->renderToString(__DIR__ . '/templates/twFollow.latte', $parameters);
